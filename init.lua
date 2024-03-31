@@ -828,7 +828,7 @@ require('lazy').setup({
   -- File tree browser
   { 'nvim-tree/nvim-tree.lua',
      opts = {},
-     config = function()
+     on_attach = function()
        vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { noremap = true})   
      end,   
   },  
