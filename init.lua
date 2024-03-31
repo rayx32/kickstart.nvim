@@ -826,12 +826,26 @@ require('lazy').setup({
   },
 
   -- File tree browser
-  { 'nvim-tree/nvim-tree.lua',
-     opts = {},
-     on_attach = function()
-       vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { noremap = true})   
-     end,   
-  },  
+  {
+    'nvim-tree/nvim-tree.lua',
+    opts = {},
+    keys = {
+      {
+        '<leader>ef',
+        function()
+          require('nvim-tree.api').tree.toggle { path = '<args>', find_file = true, focus = true }
+        end,
+        desc = 'Find file in Tree',
+      },
+      {
+        '<leader>ee',
+        function()
+          require('nvim-tree.api').tree.open { path = '<args>' }
+        end,
+        desc = 'Toggle Tree',
+      },
+    },
+  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
