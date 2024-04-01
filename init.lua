@@ -857,6 +857,50 @@ require('lazy').setup({
     end,
   },
 
+  -- Toggle term
+  {
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('toggleterm').setup()
+      vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm direction=float<CR>', { desc = 'ToggleTerm float' })
+      vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal size=15 <CR>', { desc = 'ToggleTerm horizontal split' })
+      vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical size=40<CR>', { desc = 'ToggleTerm vertical split' })
+    end,
+  },
+
+  -- Smart split management
+  {
+    'mrjones2014/smart-splits.nvim',
+    config = function()
+      require('smart-splits').setup {}
+      local api = require 'smart-splits'
+      vim.keymap.set('n', '<C-h>', function()
+        api.move_cursor_left()
+      end, { desc = 'Move to left split' })
+      vim.keymap.set('n', '<C-j>', function()
+        api.move_cursor_down()
+      end, { desc = 'Move to below split' })
+      vim.keymap.set('n', '<C-k>', function()
+        api.move_cursor_up()
+      end, { desc = 'Move to above split' })
+      vim.keymap.set('n', '<C-l>', function()
+        api.move_cursor_right()
+      end, { desc = 'Move to right split' })
+      vim.keymap.set('n', '<C-Up>', function()
+        api.resize_up()
+      end, { desc = 'Resize split up' })
+      vim.keymap.set('n', '<C-Down>', function()
+        api.resize_down()
+      end, { desc = 'Resize split down' })
+      vim.keymap.set('n', '<C-Left>', function()
+        api.resize_left()
+      end, { desc = 'Resize split left' })
+      vim.keymap.set('n', '<C-Right>', function()
+        api.resize_right()
+      end, { desc = 'Resize split right' })
+    end,
+  },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
